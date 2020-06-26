@@ -75,10 +75,6 @@ public class SuiviDesCoursDeVente {
 		double nouvelleMoyenne = moyenne*(tour/(tour+1.)) + cours/(tour+1.);
 		this.prixStat.get(choco).set(2, nouvelleMoyenne);
 	}
-	/**
-	 * 
-	 * @return une map à 5 entrée, une pour chaque type de chocolat, avec pour chaque entrée : 0 si le cours est dans la moyenne, 1 si le cours est en dessous du min
-	 */
 	
 	
 	public void updatePrixStat() {
@@ -87,7 +83,7 @@ public class SuiviDesCoursDeVente {
 		}
 	}
 	/** 
-	 * Renvoie le cours en poucentage de la moyenne (renvoie 1 si les cours = moyenne)
+	 * Renvoie le cours en poucentage de la moyenne (> 1 si les cours > moyenne et < 1 sinon)
 	 */
 	public double getCours_Moyenne(Chocolat choco) {
 		Double moy = this.getMoy(choco);
@@ -98,8 +94,8 @@ public class SuiviDesCoursDeVente {
 	 * 
 	 * @param choco
 	 * @return 0 si le prix est entre min et max ou entre 0.5 et 2 moyenne : indifférent
-	 * 			1 si le prix est < min ou < 1/2 moyenne : pas d'achat
-	 * 			2 si le prix est > max ou > 2 moyenne : achat
+	 * 			1 si le prix est < min ou < 1/2 moyenne : pas vente
+	 * 			2 si le prix est > max ou > 2 moyenne : vente
 	 */
 	public int avisAchat(Chocolat choco) {
 		double cours = this.getCours(choco);
@@ -116,8 +112,8 @@ public class SuiviDesCoursDeVente {
 	 * 
 	 * @param choco
 	 * @return Une map à 5 entrée, une pour chaque type de chocolat, avec pour chaque entrée : 0 si le prix est entre min et max ou entre 0.5 et 2 moyenne : indifférent
-	 * 			1 si le prix est < min ou < 1/2 moyenne : pas d'achat
-	 * 			2 si le prix est > max ou > 2 moyenne : achat
+	 * 			1 si le prix est < min ou < 1/2 moyenne : pas vente
+	 * 			2 si le prix est > max ou > 2 moyenne : vente
 	 */
 	
 	public HashMap<Chocolat, Integer> avisAchat() {
